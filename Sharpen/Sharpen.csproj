@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BB30B844-5CB6-49F8-96F3-95539721EC19}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Sharpen</RootNamespace>
+    <AssemblyName>Sharpen</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="Mono.Posix" />
+    <Reference Include="System.Core" />
+    <Reference Include="ICSharpCode.SharpZipLib" />
+    <Reference Include="System.Web" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="AList.cs" />
+    <Compile Include="AbstractCollection.cs" />
+    <Compile Include="AbstractList.cs" />
+    <Compile Include="AbstractMap.cs" />
+    <Compile Include="AbstractSet.cs" />
+    <Compile Include="AccessController.cs" />
+    <Compile Include="Arrays.cs" />
+    <Compile Include="AtomicBoolean.cs" />
+    <Compile Include="AtomicInteger.cs" />
+    <Compile Include="AtomicLong.cs" />
+    <Compile Include="AtomicReference.cs" />
+    <Compile Include="AtomicReferenceArray.cs" />
+    <Compile Include="Authenticator.cs" />
+    <Compile Include="BitSet.cs" />
+    <Compile Include="BufferedInputStream.cs" />
+    <Compile Include="BufferedOutputStream.cs" />
+    <Compile Include="BufferedReader.cs" />
+    <Compile Include="BufferedWriter.cs" />
+    <Compile Include="ByteArrayInputStream.cs" />
+    <Compile Include="ByteArrayOutputStream.cs" />
+    <Compile Include="ByteBuffer.cs" />
+    <Compile Include="ByteOrder.cs" />
+    <Compile Include="CRC32.cs" />
+    <Compile Include="Callable.cs" />
+    <Compile Include="Channels.cs" />
+    <Compile Include="CharBuffer.cs" />
+    <Compile Include="CharSequence.cs" />
+    <Compile Include="CharsetDecoder.cs" />
+    <Compile Include="CharsetEncoder.cs" />
+    <Compile Include="CodingErrorAction.cs" />
+    <Compile Include="Collections.cs" />
+    <Compile Include="ConcurrentHashMap.cs" />
+    <Compile Include="ConcurrentMap.cs" />
+    <Compile Include="CopyOnWriteArrayList.cs" />
+    <Compile Include="CountDownLatch.cs" />
+    <Compile Include="CyclicBarrier.cs" />
+    <Compile Include="DataConverter.cs" />
+    <Compile Include="DeflaterOutputStream.cs" />
+    <Compile Include="DigestOutputStream.cs" />
+    <Compile Include="EnumSet.cs" />
+    <Compile Include="EnumerableWrapper.cs" />
+    <Compile Include="EnumeratorWrapper.cs" />
+    <Compile Include="Exceptions.cs" />
+    <Compile Include="Executor.cs" />
+    <Compile Include="ExecutorService.cs" />
+    <Compile Include="Executors.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="FileChannel.cs" />
+    <Compile Include="FileInputStream.cs" />
+    <Compile Include="FileLock.cs" />
+    <Compile Include="FileOutputStream.cs" />
+    <Compile Include="FilePath.cs" />
+    <Compile Include="FileReader.cs" />
+    <Compile Include="FileWriter.cs" />
+    <Compile Include="FilenameFilter.cs" />
+    <Compile Include="FilterInputStream.cs" />
+    <Compile Include="FilterOutputStream.cs" />
+    <Compile Include="Future.cs" />
+    <Compile Include="GZIPInputStream.cs" />
+    <Compile Include="GZIPOutputStream.cs" />
+    <Compile Include="HttpURLConnection.cs" />
+    <Compile Include="InflaterInputStream.cs" />
+    <Compile Include="InheritableThreadLocal.cs" />
+    <Compile Include="InputStream.cs" />
+    <Compile Include="InputStreamReader.cs" />
+    <Compile Include="Iterable.cs" />
+    <Compile Include="Iterator.cs" />
+    <Compile Include="LinkageError.cs" />
+    <Compile Include="LinkedHashMap.cs" />
+    <Compile Include="LinkedHashSet.cs" />
+    <Compile Include="ListIterator.cs" />
+    <Compile Include="MappedByteBuffer.cs" />
+    <Compile Include="Matcher.cs" />
+    <Compile Include="MessageDigest.cs" />
+    <Compile Include="MessageFormat.cs" />
+    <Compile Include="ObjectInputStream.cs" />
+    <Compile Include="ObjectOutputStream.cs" />
+    <Compile Include="OutputStream.cs" />
+    <Compile Include="OutputStreamWriter.cs" />
+    <Compile Include="PasswordAuthentication.cs" />
+    <Compile Include="Pattern.cs" />
+    <Compile Include="PipedInputStream.cs" />
+    <Compile Include="PipedOutputStream.cs" />
+    <Compile Include="PrintWriter.cs" />
+    <Compile Include="PrivilegedAction.cs" />
+    <Compile Include="Process.cs" />
+    <Compile Include="Proxy.cs" />
+    <Compile Include="ProxySelector.cs" />
+    <Compile Include="RandomAccessFile.cs" />
+    <Compile Include="ReentrantLock.cs" />
+    <Compile Include="Reference.cs" />
+    <Compile Include="ReferenceQueue.cs" />
+    <Compile Include="ResourceBundle.cs" />
+    <Compile Include="Runnable.cs" />
+    <Compile Include="Runtime.cs" />
+    <Compile Include="SSLContext.cs" />
+    <Compile Include="ScheduledThreadPoolExecutor.cs" />
+    <Compile Include="SimpleDateFormat.cs" />
+    <Compile Include="SingletonList.cs" />
+    <Compile Include="SoftReference.cs" />
+    <Compile Include="SynchronizedList.cs" />
+    <Compile Include="Thread.cs" />
+    <Compile Include="ThreadFactory.cs" />
+    <Compile Include="ThreadPoolExecutor.cs" />
+    <Compile Include="TimeUnit.cs" />
+    <Compile Include="TreeSet.cs" />
+    <Compile Include="TrustManager.cs" />
+    <Compile Include="URLEncoder.cs" />
+    <Compile Include="WeakReference.cs" />
+    <Compile Include="WrappedSystemStream.cs" />
+    <Compile Include="X509Certificate.cs" />
+    <Compile Include="X509TrustManager.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

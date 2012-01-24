@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9F880310-BA40-4DF0-BBC8-8CB78EF133D1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>NBoilerpipe</RootNamespace>
+    <AssemblyName>NBoilerpipe</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\Libs\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="BoilerpipeDocumentSource.cs" />
+    <Compile Include="BoilerpipeExtractor.cs" />
+    <Compile Include="BoilerpipeFilter.cs" />
+    <Compile Include="BoilerpipeInput.cs" />
+    <Compile Include="BoilerpipeProcessingException.cs" />
+    <Compile Include="Conditions\TextBlockCondition.cs" />
+    <Compile Include="Document\TextBlock.cs" />
+    <Compile Include="Document\TextDocument.cs" />
+    <Compile Include="Document\TextDocumentStatistics.cs" />
+    <Compile Include="Estimators\SimpleEstimator.cs" />
+    <Compile Include="Extractors\ArticleExtractor.cs" />
+    <Compile Include="Extractors\ArticleSentencesExtractor.cs" />
+    <Compile Include="Extractors\CanolaExtractor.cs" />
+    <Compile Include="Extractors\CommonExtractors.cs" />
+    <Compile Include="Extractors\DefaultExtractor.cs" />
+    <Compile Include="Extractors\ExtractorBase.cs" />
+    <Compile Include="Extractors\KeepEverythingExtractor.cs" />
+    <Compile Include="Extractors\KeepEverythingWithMinKWordsExtractor.cs" />
+    <Compile Include="Extractors\LargestContentExtractor.cs" />
+    <Compile Include="Extractors\NumWordsRulesExtractor.cs" />
+    <Compile Include="Filters\English\DensityRulesClassifier.cs" />
+    <Compile Include="Filters\English\HeuristicFilterBase.cs" />
+    <Compile Include="Filters\English\IgnoreBlocksAfterContentFilter.cs" />
+    <Compile Include="Filters\English\IgnoreBlocksAfterContentFromEndFilter.cs" />
+    <Compile Include="Filters\English\KeepLargestFulltextBlockFilter.cs" />
+    <Compile Include="Filters\English\MinFulltextWordsFilter.cs" />
+    <Compile Include="Filters\English\NumWordsRulesClassifier.cs" />
+    <Compile Include="Filters\English\TerminatingBlocksFinder.cs" />
+    <Compile Include="Filters\Heuristics\AddPrecedingLabelsFilter.cs" />
+    <Compile Include="Filters\Heuristics\ArticleMetadataFilter.cs" />
+    <Compile Include="Filters\Heuristics\BlockProximityFusion.cs" />
+    <Compile Include="Filters\Heuristics\ContentFusion.cs" />
+    <Compile Include="Filters\Heuristics\DocumentTitleMatchClassifier.cs" />
+    <Compile Include="Filters\Heuristics\ExpandTitleToContentFilter.cs" />
+    <Compile Include="Filters\Heuristics\KeepLargestBlockFilter.cs" />
+    <Compile Include="Filters\Heuristics\LabelFusion.cs" />
+    <Compile Include="Filters\Heuristics\SimpleBlockFusionProcessor.cs" />
+    <Compile Include="Filters\Simple\BoilerplateBlockFilter.cs" />
+    <Compile Include="Filters\Simple\InvertedFilter.cs" />
+    <Compile Include="Filters\Simple\LabelToBoilerplateFilter.cs" />
+    <Compile Include="Filters\Simple\LabelToContentFilter.cs" />
+    <Compile Include="Filters\Simple\MarkEverythingContentFilter.cs" />
+    <Compile Include="Filters\Simple\MinClauseWordsFilter.cs" />
+    <Compile Include="Filters\Simple\MinWordsFilter.cs" />
+    <Compile Include="Filters\Simple\SplitParagraphBlocksFilter.cs" />
+    <Compile Include="Filters\Simple\SurroundingToContentFilter.cs" />
+    <Compile Include="Labels\ConditionalLabelAction.cs" />
+    <Compile Include="Labels\DefaultLabels.cs" />
+    <Compile Include="Labels\LabelAction.cs" />
+    <Compile Include="Util\UnicodeTokenizer.cs" />
+    <Compile Include="Parser\HAPContentHandler.cs" />
+    <Compile Include="Parser\NBoilerpipeContentHandler.cs" />
+    <Compile Include="Parser\NBoilerpipeHtmlParser.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\Sharpen\Sharpen.csproj">
+      <Project>{BB30B844-5CB6-49F8-96F3-95539721EC19}</Project>
+      <Name>Sharpen</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Parser\" />
+  </ItemGroup>
+</Project>
