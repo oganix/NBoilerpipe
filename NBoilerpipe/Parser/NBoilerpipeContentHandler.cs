@@ -64,35 +64,32 @@ namespace NBoilerpipe
             }
         }
 
-        public void TextNode(HtmlTextNode node)
-        {
-            textElementIndex++;
+        public void TextNode (HtmlTextNode node)
+		{
+			textElementIndex++;
 
-            if (inIgnoreableElement != 0)
-            {
-                inIgnoreableElement--;
-                return;
-            }
+			if (inIgnoreableElement != 0) {
+				inIgnoreableElement--;
+				return;
+			}
             
-            textElementIndex++;
+			textElementIndex++;
 
-            String text = null;
-            if (!String.IsNullOrEmpty(node.Text))
-            {
-                text = Regex.Replace(node.InnerText.Trim(), "\\s+", " ");
-                textBuilder.Append(text);
-                tokenBuilder.Append(text);
+			String text = null;
+			if (!String.IsNullOrEmpty (node.Text)) {
+				text = Regex.Replace (node.InnerText.Trim (), "\\s+", " ");
+				textBuilder.Append (text);
+				tokenBuilder.Append (text);
 
-                if (inAnchorElement != 0)
-                {
-                    tokenBuilder.Append(ANCHOR_TEXT_END);
-                    tokenBuilder.Append(' ');
-                    inAnchorElement--;
-                }
+				if (inAnchorElement != 0) {
+					tokenBuilder.Append (ANCHOR_TEXT_END);
+					tokenBuilder.Append (' ');
+					inAnchorElement--;
+				}
 
-                currentContainedTextElements.Add (1);
-            }
-        }
+				currentContainedTextElements.Add (textElementIndex);
+			}
+		}
 
         private void FlushBlock()
         {

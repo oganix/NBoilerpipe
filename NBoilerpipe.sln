@@ -27,6 +27,6 @@ Global
 		{FA1F77BC-A790-41DD-8938-C7032E99D2EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = NBoilerpipe\NBoilerpipe.csproj
+		StartupItem = Test\Test.csproj
 	EndGlobalSection
 EndGlobal

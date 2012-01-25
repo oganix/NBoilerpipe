@@ -25,25 +25,24 @@ namespace NBoilerpipe.Parser
             Traverse(htmlDocument.DocumentNode);
         }
 
-        private void Traverse(HtmlNode node) {
-           switch (node.NodeType) {
-                case HtmlNodeType.Element:
-                   contentHandler.ElementNode(node);
-                   break;
-                case HtmlNodeType.Text:
-                   contentHandler.TextNode((HtmlTextNode)node);
-                   break;
-            }
+        private void Traverse (HtmlNode node)
+		{
+			switch (node.NodeType) {
+			case HtmlNodeType.Element:
+				contentHandler.ElementNode (node);
+				break;
+			case HtmlNodeType.Text:
+				contentHandler.TextNode ((HtmlTextNode)node);
+				break;
+			}
 
-            // Recurse.
-            if (node.HasChildNodes) {
-                for (int i = node.ChildNodes.Count - 1; i >= 0; i--)
-                {
-                    Traverse(node.ChildNodes[i]);
-                }
-            }
-        }
-
+			// Recurse.
+			if (node.HasChildNodes) {
+				for (int i = 0; i < node.ChildNodes.Count; i++) {
+					Traverse (node.ChildNodes [i]);
+				}
+			}
+		}
 
         public TextDocument ToTextDocument()
         {
