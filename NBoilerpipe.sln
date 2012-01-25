@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NBoilerpipe", "NBoilerpipe\NBoilerpipe.csproj", "{9F880310-BA40-4DF0-BBC8-8CB78EF133D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sharpen", "Sharpen\Sharpen.csproj", "{BB30B844-5CB6-49F8-96F3-95539721EC19}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{FA1F77BC-A790-41DD-8938-C7032E99D2EC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9F880310-BA40-4DF0-BBC8-8CB78EF133D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F880310-BA40-4DF0-BBC8-8CB78EF133D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F880310-BA40-4DF0-BBC8-8CB78EF133D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F880310-BA40-4DF0-BBC8-8CB78EF133D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB30B844-5CB6-49F8-96F3-95539721EC19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB30B844-5CB6-49F8-96F3-95539721EC19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB30B844-5CB6-49F8-96F3-95539721EC19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB30B844-5CB6-49F8-96F3-95539721EC19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA1F77BC-A790-41DD-8938-C7032E99D2EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA1F77BC-A790-41DD-8938-C7032E99D2EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA1F77BC-A790-41DD-8938-C7032E99D2EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA1F77BC-A790-41DD-8938-C7032E99D2EC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = NBoilerpipe\NBoilerpipe.csproj
+	EndGlobalSection
+EndGlobal

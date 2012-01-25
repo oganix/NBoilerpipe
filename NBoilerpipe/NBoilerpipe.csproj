@@ -92,12 +92,12 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
+    <Folder Include="Parser\" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Sharpen\Sharpen.csproj">
       <Project>{BB30B844-5CB6-49F8-96F3-95539721EC19}</Project>
       <Name>Sharpen</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Parser\" />
   </ItemGroup>
 </Project>
