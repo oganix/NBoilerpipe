@@ -41,6 +41,9 @@ namespace NBoilerpipe.Parser
 				for (int i = 0; i < node.ChildNodes.Count; i++) {
 					Traverse (node.ChildNodes [i]);
 				}
+				
+				if(node.NodeType == HtmlNodeType.Element)
+					contentHandler.FlushBlock ();
 			}
 		}
 

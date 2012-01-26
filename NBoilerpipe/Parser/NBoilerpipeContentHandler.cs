@@ -91,7 +91,7 @@ namespace NBoilerpipe
 			}
 		}
 
-        private void FlushBlock()
+        public void FlushBlock()
         {
             char[] seps = { '"', '\'', '@', '!', '-', ':', ';', '?', '$', '/', '(', ')', '.', ',' };
             String[] tokens = tokenBuilder.ToString().Split(seps);
@@ -167,11 +167,8 @@ namespace NBoilerpipe
             AddTextBlock(tb);
         }
 
-
-
         public TextDocument ToTextDocument()
         {
-            FlushBlock();
             return new TextDocument(title, textBlocks);
         }
 
