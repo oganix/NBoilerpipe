@@ -27,22 +27,22 @@ namespace NBoilerpipe.Parser
 
         private void Traverse (HtmlNode node)
 		{
+			bool traverse = true;
+
 			switch (node.NodeType) {
 			case HtmlNodeType.Element:
-				contentHandler.ElementNode (node);
+				traverse = contentHandler.ElementNode (node);
 				break;
 			case HtmlNodeType.Text:
-				contentHandler.TextNode ((HtmlTextNode)node);
+				traverse = contentHandler.TextNode ((HtmlTextNode)node);
 				break;
 			}
 
-			// Recurse.
-			if (node.HasChildNodes) {
-				for (int i = 0; i < node.ChildNodes.Count; i++) {
+			if (node.HasChildNodes && traverse) {
+				for (int i = 0; i < node.ChildNodes.Count; i++) 
 					Traverse (node.ChildNodes [i]);
-				}
-				
-				if(node.NodeType == HtmlNodeType.Element)
+
+				if (node.NodeType == HtmlNodeType.Element)
 					contentHandler.FlushBlock ();
 			}
 		}

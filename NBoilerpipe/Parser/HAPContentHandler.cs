@@ -3,9 +3,9 @@ using HtmlAgilityPack;
 
 namespace NBoilerpipe.Parser
 {
-    public interface HAPContentHandler
+    public interface IContentHandler
     {
-        void ElementNode(HtmlNode node);
-        void TextNode(HtmlTextNode node);
+        bool ElementNode(HtmlNode node);
+        bool TextNode(HtmlTextNode node);
     }
 }

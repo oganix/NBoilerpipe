@@ -26,7 +26,7 @@ namespace Test
 			
 			String lyrics = DefaultExtractor.INSTANCE.GetText (page);
 			
-			Console.WriteLine (lyrics);
+			Console.WriteLine ("Lyrics: " + lyrics);
 		}
 	}
 }

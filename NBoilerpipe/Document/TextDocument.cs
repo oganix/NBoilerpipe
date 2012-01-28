@@ -111,16 +111,11 @@ namespace NBoilerpipe.Document
 		public virtual string GetText (bool includeContent, bool includeNonContent)
 		{
 			StringBuilder sb = new StringBuilder ();
-		LOOP_continue:
 			foreach (TextBlock block in GetTextBlocks()) {
 				if (block.IsContent ()) {
-					if (!includeContent) {
-						goto LOOP_continue;
-					}
+					if (!includeContent) continue;
 				} else {
-					if (!includeNonContent) {
-						goto LOOP_continue;
-					}
+					if (!includeNonContent) continue;
 				}
 				sb.Append (block.GetText ());
 				sb.Append ('\n');
