@@ -86,9 +86,9 @@
     <Compile Include="Labels\DefaultLabels.cs" />
     <Compile Include="Labels\LabelAction.cs" />
     <Compile Include="Util\UnicodeTokenizer.cs" />
-    <Compile Include="Parser\HAPContentHandler.cs" />
     <Compile Include="Parser\NBoilerpipeContentHandler.cs" />
     <Compile Include="Parser\NBoilerpipeHtmlParser.cs" />
+    <Compile Include="Parser\IContentHandler.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
