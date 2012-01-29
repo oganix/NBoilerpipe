@@ -403,7 +403,12 @@ namespace Sharpen
 		{
 			return list.Remove<T> (0);
 		}
-
+		
+		public static T RemoveLast<T> (this IList<T> list)
+		{
+			return list.Remove<T> (list.Count - 1);			
+		}
+		
 		public static string ReplaceAll (this string str, string regex, string replacement)
 		{
 			Regex rgx = new Regex (regex);

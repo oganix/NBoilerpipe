@@ -89,6 +89,11 @@
     <Compile Include="Parser\NBoilerpipeContentHandler.cs" />
     <Compile Include="Parser\NBoilerpipeHtmlParser.cs" />
     <Compile Include="Parser\IContentHandler.cs" />
+    <Compile Include="Parser\CommonTagActions.cs" />
+    <Compile Include="Parser\DefaultTagActionMap.cs" />
+    <Compile Include="Parser\MarkupTagAction.cs" />
+    <Compile Include="Parser\TagAction.cs" />
+    <Compile Include="Parser\TagActionMap.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

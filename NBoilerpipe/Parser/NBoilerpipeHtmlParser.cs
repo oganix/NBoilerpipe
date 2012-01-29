@@ -10,7 +10,7 @@ namespace NBoilerpipe.Parser
 {
     public class NBoilerpipeHtmlParser
     {
-        private NBoilerpipeContentHandler contentHandler { get; set; }
+		NBoilerpipeContentHandler contentHandler;
 
         public NBoilerpipeHtmlParser(NBoilerpipeContentHandler contentHandler)
         {
@@ -27,24 +27,19 @@ namespace NBoilerpipe.Parser
 
         private void Traverse (HtmlNode node)
 		{
-			bool traverse = true;
-
-			switch (node.NodeType) {
-			case HtmlNodeType.Element:
-				traverse = contentHandler.ElementNode (node);
-				break;
-			case HtmlNodeType.Text:
-				traverse = contentHandler.TextNode ((HtmlTextNode)node);
-				break;
+			if (node.NodeType == HtmlNodeType.Element) {
+				contentHandler.StartElement (node);
+			} else if (node.NodeType == HtmlNodeType.Text) {
+				contentHandler.HandleText ((HtmlTextNode)node);
 			}
 
-			if (node.HasChildNodes && traverse) {
+			if (node.HasChildNodes) {
 				for (int i = 0; i < node.ChildNodes.Count; i++) 
 					Traverse (node.ChildNodes [i]);
-
-				if (node.NodeType == HtmlNodeType.Element)
-					contentHandler.FlushBlock ();
 			}
+			
+			if (node.NodeType == HtmlNodeType.Element)
+				contentHandler.EndElement (node);
 		}
 
         public TextDocument ToTextDocument()

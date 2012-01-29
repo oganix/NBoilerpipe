@@ -5,7 +5,8 @@ namespace NBoilerpipe.Parser
 {
     public interface IContentHandler
     {
-        bool ElementNode(HtmlNode node);
-        bool TextNode(HtmlTextNode node);
+        void StartElement(HtmlNode node);
+		void EndElement(HtmlNode node);
+        void HandleText(HtmlTextNode node);
     }
 }

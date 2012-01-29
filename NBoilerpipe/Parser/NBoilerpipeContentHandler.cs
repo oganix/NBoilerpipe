@@ -11,82 +11,164 @@ using Sharpen;
 
 namespace NBoilerpipe
 {
+
     public class NBoilerpipeContentHandler : IContentHandler
     {
-        String title = null;
-        StringBuilder textBuilder = new StringBuilder();
-        StringBuilder tokenBuilder = new StringBuilder();
+		enum Event
+		{
+			START_TAG,
+			END_TAG,
+			CHARACTERS,
+			WHITESPACE
+		}
+		
+		readonly IDictionary<string, TagAction> tagActions = DefaultTagActionMap.INSTANCE;
+		string title = null;
 
-        List<TextBlock> textBlocks = new List<TextBlock>();
-        BitSet currentContainedTextElements = new BitSet();
-        int textElementIndex = 0;
-        int inAnchorElement = 0;
-        int offsetBlocks = 0;
-        bool inAnchorText = false;
+		internal static readonly string ANCHOR_TEXT_START = "$\ue00a<";
+		internal static readonly string ANCHOR_TEXT_END = ">\ue00a$";
+		internal StringBuilder tokenBuilder = new StringBuilder();
+		internal StringBuilder textBuilder = new StringBuilder();
+		internal int inBody = 0;
+		internal int inAnchor = 0;
+		internal int inIgnorableElement = 0;
+		internal int tagLevel = 0;
+		internal int blockTagLevel = -1;
+		internal bool sbLastWasWhitespace = false;
+
+		int textElementIdx = 0;
+		readonly IList<TextBlock> textBlocks = new AList<TextBlock>();
+		string lastStartTag = null;
+		string lastEndTag = null;
+		NBoilerpipeContentHandler.Event lastEvent;
+		int offsetBlocks = 0;
+		BitSet currentContainedTextElements = new BitSet();
+		bool flush = false;
+		bool inAnchorText = false;
+		internal List<List<LabelAction>> labelStacks = new List<List<LabelAction>>();
+		internal List<int?> fontSizeStack = new List<int?>();
 		
 		static readonly Sharpen.Pattern PAT_VALID_WORD_CHARACTER = Sharpen.Pattern
 			.Compile ("[\\p{L}\\p{Nd}\\p{Nl}\\p{No}]");
 		
-        LinkedList<LabelAction> labelStack = new LinkedList<LabelAction>();
-        LinkedList<int> fontSizeStack = new LinkedList<int>();
-
-        static readonly String ANCHOR_TEXT_START = "$\ue00a<";
-	    static readonly String ANCHOR_TEXT_END = ">\ue00a$";
-        List<String> Blacklist = new List<String>
-        {
-                { "script" },
-                { "style" },
-                { "option" },
-                { "object" },
-                { "embed" },
-                { "applet" },
-                { "link" },
-                { "iframe" },
-                { "noscript" },
-                { "img" },
-                { "meta" },
-                { "head" },
-                { "ul" },
-                { "ol" },
-                { "li" },
-                { "form" },
-                { "input" }
-        };
-
-        public bool ElementNode (HtmlNode node)
+		
+		public void StartElement (HtmlNode node)
 		{
-			bool cont = true;
-			if (Blacklist.Contains (node.Name.ToLowerInvariant ())) {
-				cont = false;
-			} else if (node.Name.ToLowerInvariant ().Equals ("a")) {
-				inAnchorElement++;
-				tokenBuilder.Append (ANCHOR_TEXT_START);
-				tokenBuilder.Append (' ');
-			}
-			return cont;
-		}
-
-        public bool TextNode (HtmlTextNode node)
-		{
-			bool cont = true;
-			textElementIndex++;
-			String text = null;
-			if (!String.IsNullOrEmpty (node.Text)) {
-				text = Regex.Replace (node.InnerText.Trim (), "\\s+", " ");
-				textBuilder.Append (text);
-				tokenBuilder.Append (text);
-
-				if (inAnchorElement != 0) {
-					tokenBuilder.Append (ANCHOR_TEXT_END);
-					tokenBuilder.Append (' ');
-					inAnchorElement--;
+			labelStacks.AddItem (null);
+			TagAction ta = tagActions.Get (node.Name);
+			if (ta != null) {
+				if (ta.ChangesTagLevel ()) {
+					tagLevel++;
 				}
-				currentContainedTextElements.Add (textElementIndex);
+				flush = ta.Start (this, node.Name, node.Attributes) | flush;
+			} else {
+				tagLevel++;
+				flush = true;
 			}
-			return cont;
+			lastEvent = NBoilerpipeContentHandler.Event.START_TAG;
+			lastStartTag = node.Name;
 		}
 		
-		public virtual void FlushBlock ()
+		public void EndElement (HtmlNode node) 
+		{
+			TagAction ta = tagActions.Get (node.Name);
+			if (ta != null) {
+				flush = ta.End (this, node.Name) | flush;
+			} else {
+				flush = true;
+			}
+			if (ta == null || ta.ChangesTagLevel ()) {
+				tagLevel--;
+			}
+			if (flush) {
+				FlushBlock ();
+			}
+			lastEvent = NBoilerpipeContentHandler.Event.END_TAG;
+			lastEndTag = node.Name;
+			labelStacks.RemoveLast ();
+		}
+		
+        public void HandleText (HtmlTextNode node)
+		{
+			char[] ch = node.Text.ToCharArray ();
+			int start = 0;
+			int length = ch.Length;
+			
+			textElementIdx++;
+			
+			if (flush) {
+				FlushBlock ();
+				flush = false;
+			}
+			if (inIgnorableElement != 0) {
+				return;
+			}
+			
+			char c;
+			bool startWhitespace = false;
+			bool endWhitespace = false;
+			if (length == 0) {
+				return;
+			}
+			int end = start + length;
+			for (int i = start; i < end; i++) {
+				if (char.IsWhiteSpace (ch [i])) {
+					ch [i] = ' ';
+				}
+			}
+			while (start < end) {
+				c = ch [start];
+				if (c == ' ') {
+					startWhitespace = true;
+					start++;
+					length--;
+				} else {
+					break;
+				}
+			}
+			while (length > 0) {
+				c = ch [start + length - 1];
+				if (c == ' ') {
+					endWhitespace = true;
+					length--;
+				} else {
+					break;
+				}
+			}
+			if (length == 0) {
+				if (startWhitespace || endWhitespace) {
+					if (!sbLastWasWhitespace) {
+						textBuilder.Append (' ');
+						tokenBuilder.Append (' ');
+					}
+					sbLastWasWhitespace = true;
+				} else {
+					sbLastWasWhitespace = false;
+				}
+				lastEvent = NBoilerpipeContentHandler.Event.WHITESPACE;
+				return;
+			}
+			if (startWhitespace) {
+				if (!sbLastWasWhitespace) {
+					textBuilder.Append (' ');
+					tokenBuilder.Append (' ');
+				}
+			}
+			if (blockTagLevel == -1) {
+				blockTagLevel = tagLevel;
+			}
+			textBuilder.Append (ch, start, length);
+			tokenBuilder.Append (ch, start, length);
+			if (endWhitespace) {
+				textBuilder.Append (' ');
+				tokenBuilder.Append (' ');
+			}
+			sbLastWasWhitespace = endWhitespace;
+			lastEvent = NBoilerpipeContentHandler.Event.CHARACTERS;
+			currentContainedTextElements.Add(textElementIdx);
+		}
+		
+		public void FlushBlock ()
 		{
 			int length = tokenBuilder.Length;
 			if (length == 0) 
@@ -152,9 +234,9 @@ namespace NBoilerpipe
 			offsetBlocks++;
 			textBuilder.Length = 0;
 			tokenBuilder.Length = 0;
-			//tb.SetTagLevel (blockTagLevel);
+			tb.SetTagLevel (blockTagLevel);
 			AddTextBlock (tb);
-			//blockTagLevel = -1;
+			blockTagLevel = -1;
 		}
 
 		static bool IsWord (string token)
@@ -173,13 +255,37 @@ namespace NBoilerpipe
 				tb.AddLabels ("font-" + l);
 				break;
 			}
+			
+			foreach (List<LabelAction> labels in labelStacks) {
+				if (labels != null) {
+					foreach (LabelAction label in labels) {
+						label.AddTo (tb);
+					}
+				}
+			}
+			textBlocks.Add (tb);
+		}
+		
+		
+		public void AddWhitespaceIfNecessary ()
+		{
+			if (!sbLastWasWhitespace) {
+				tokenBuilder.Append (' ');
+				textBuilder.Append (' ');
+				sbLastWasWhitespace = true;
+			}
+		}
+		
+		public void AddLabelAction (LabelAction la)
+		{
+			List<LabelAction> labelStack = labelStacks.GetLast ();
+			if (labelStack == null) {
+				labelStack = new List<LabelAction> ();
+				labelStacks.RemoveLast ();
+				labelStacks.AddItem (labelStack);
+			}
+			labelStack.AddItem (la);
+		}
 
-		    foreach (LabelAction labels in labelStack) {
-			    if (labels != null) {
-				    labels.AddLabelsTo(tb);
-			    }
-		    }
-		    textBlocks.Add(tb);
-	    }
     }
 }
