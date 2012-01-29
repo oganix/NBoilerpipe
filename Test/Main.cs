@@ -23,7 +23,8 @@ namespace Test
 			*/
 			
 			String page = File.ReadAllText ("/Users/aogan/Dropbox/Temp/simple.html");
-			
+		
+		
 			String lyrics = DefaultExtractor.INSTANCE.GetText (page);
 			
 			Console.WriteLine ("Lyrics: " + lyrics);
