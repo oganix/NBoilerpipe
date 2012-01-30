@@ -113,9 +113,11 @@ namespace NBoilerpipe.Document
 			StringBuilder sb = new StringBuilder ();
 			foreach (TextBlock block in GetTextBlocks()) {
 				if (block.IsContent ()) {
-					if (!includeContent) continue;
+					if (!includeContent)
+						continue;
 				} else {
-					if (!includeNonContent) continue;
+					if (!includeNonContent)
+						continue;
 				}
 				sb.Append (block.GetText ());
 				sb.Append ('\n');

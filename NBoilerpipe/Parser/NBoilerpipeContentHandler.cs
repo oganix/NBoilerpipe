@@ -69,7 +69,7 @@ namespace NBoilerpipe
 			lastStartTag = node.Name;
 		}
 		
-		public void EndElement (HtmlNode node) 
+		public void EndElement (HtmlNode node)
 		{
 			TagAction ta = tagActions.Get (node.Name);
 			if (ta != null) {
@@ -170,11 +170,14 @@ namespace NBoilerpipe
 		
 		public void FlushBlock ()
 		{
+			if (inBody == 0 && Sharpen.Runtime.EqualsIgnoreCase ("TITLE", lastStartTag)) 
+				SetTitle (tokenBuilder.ToString ().Trim ());
+			
 			int length = tokenBuilder.Length;
-			if (length == 0) 
+			if (length == 0) {
 				return;
-			else if (length == 1) {
-				if (Regex.IsMatch (tokenBuilder.ToString (), "\\s+")) {
+			} else if (length == 1) {
+				if (sbLastWasWhitespace) {
 					textBuilder.Length = 0;
 					tokenBuilder.Length = 0;
 					return;
@@ -235,7 +238,9 @@ namespace NBoilerpipe
 			textBuilder.Length = 0;
 			tokenBuilder.Length = 0;
 			tb.SetTagLevel (blockTagLevel);
+			
 			AddTextBlock (tb);
+			
 			blockTagLevel = -1;
 		}
 
@@ -286,6 +291,15 @@ namespace NBoilerpipe
 			}
 			labelStack.AddItem (la);
 		}
+		
+		public void SetTitle (string s)
+		{
+			if (s == null || s.Length == 0) {
+				return;
+			}
+			title = s;
+		}
+
 
     }
 }

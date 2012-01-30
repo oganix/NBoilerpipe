@@ -22,10 +22,11 @@ namespace Test
 			}
 			*/
 			
-			String page = File.ReadAllText ("/Users/aogan/Dropbox/Temp/simple.html");
+			
+			String page = File.ReadAllText ("/Users/aogan/Dropbox/Temp/simple2.html");
 		
 		
-			String lyrics = DefaultExtractor.INSTANCE.GetText (page);
+			String lyrics = ArticleExtractor.INSTANCE.GetText (page);
 			
 			Console.WriteLine ("Lyrics: " + lyrics);
 		}

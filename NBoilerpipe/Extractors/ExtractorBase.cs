@@ -40,68 +40,6 @@ namespace NBoilerpipe.Extractors
 		}
 
 		/// <summary>
-		/// Extracts text from the HTML code available from the given
-		/// <see cref="Org.Xml.Sax.InputSource">Org.Xml.Sax.InputSource</see>
-		/// .
-		/// </summary>
-		/// <param name="is">The InputSource containing the HTML</param>
-		/// <returns>The extracted text.</returns>
-		/// <exception cref="NBoilerpipe.BoilerpipeProcessingException">NBoilerpipe.BoilerpipeProcessingException
-		/// 	</exception>
-		/*public virtual string GetText(InputSource @is)
-		{
-			try
-			{
-				return GetText(new BoilerpipeSAXInput(@is).GetTextDocument());
-			}
-			catch (SAXException e)
-			{
-				throw new BoilerpipeProcessingException(e);
-			}
-		}*/
-
-		/// <summary>
-		/// Extracts text from the HTML code available from the given
-		/// <see cref="System.Uri">System.Uri</see>
-		/// .
-		/// NOTE: This method is mainly to be used for show case purposes. If you are
-		/// going to crawl the Web, consider using
-		/// <see cref="GetText(Org.Xml.Sax.InputSource)">GetText(Org.Xml.Sax.InputSource)</see>
-		/// instead.
-		/// </summary>
-		/// <param name="url">The URL pointing to the HTML code.</param>
-		/// <returns>The extracted text.</returns>
-		/// <exception cref="NBoilerpipe.BoilerpipeProcessingException">NBoilerpipe.BoilerpipeProcessingException
-		/// 	</exception>
-		/*public virtual string GetText(Uri url)
-		{
-			try
-			{
-				return GetText(HTMLFetcher.Fetch(url).ToInputSource());
-			}
-			catch (IOException e)
-			{
-				throw new BoilerpipeProcessingException(e);
-			}
-		}
-		*/
-
-		/// <summary>
-		/// Extracts text from the HTML code available from the given
-		/// <see cref="System.IO.StreamReader">System.IO.StreamReader</see>
-		/// .
-		/// </summary>
-		/// <param name="r">The Reader containing the HTML</param>
-		/// <returns>The extracted text.</returns>
-		/// <exception cref="NBoilerpipe.BoilerpipeProcessingException">NBoilerpipe.BoilerpipeProcessingException
-		/// 	</exception>
-		/*public virtual string GetText(StreamReader r)
-		{
-			return GetText(new InputSource(r));
-		}
-		*/
-
-		/// <summary>
 		/// Extracts text from the given
 		/// <see cref="NBoilerpipe.Document.TextDocument">NBoilerpipe.Document.TextDocument</see>
 		/// object.

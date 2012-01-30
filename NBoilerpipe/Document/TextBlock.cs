@@ -20,34 +20,20 @@ namespace NBoilerpipe.Document
 	public class TextBlock : ICloneable
 	{
 		internal bool isContent = false;
-
-		private CharSequence text;
-
+		CharSequence text;
 		internal ICollection<string> labels = null;
-
 		internal int offsetBlocksStart;
-
 		internal int offsetBlocksEnd;
-
 		internal int numWords;
-
 		internal int numWordsInAnchorText;
-
 		internal int numWordsInWrappedLines;
-
 		internal int numWrappedLines;
-
 		internal float textDensity;
-
 		internal float linkDensity;
-
 		internal BitSet containedTextElements;
-
-		private int numFullTextWords = 0;
-
-		private int tagLevel;
-
-		private static readonly BitSet EMPTY_BITSET = new BitSet();
+		int numFullTextWords = 0;
+		int tagLevel;
+		static readonly BitSet EMPTY_BITSET = new BitSet();
 
 		public static readonly NBoilerpipe.Document.TextBlock EMPTY_START = new NBoilerpipe.Document.TextBlock
 			(string.Empty, EMPTY_BITSET, 0, 0, 0, 0, -1);
