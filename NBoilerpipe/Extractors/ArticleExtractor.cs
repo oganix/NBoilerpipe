@@ -35,14 +35,17 @@ namespace NBoilerpipe.Extractors
 		}
 
 		/// <exception cref="NBoilerpipe.BoilerpipeProcessingException"></exception>
-		public override bool Process(TextDocument doc)
+		public override bool Process (TextDocument doc)
 		{
-			return TerminatingBlocksFinder.INSTANCE.Process(doc) | new DocumentTitleMatchClassifier
-				(doc.GetTitle()).Process(doc) | NumWordsRulesClassifier.INSTANCE.Process(doc) | 
-				IgnoreBlocksAfterContentFilter.DEFAULT_INSTANCE.Process(doc) | BlockProximityFusion
-				.MAX_DISTANCE_1.Process(doc) | BoilerplateBlockFilter.INSTANCE.Process(doc) | BlockProximityFusion
-				.MAX_DISTANCE_1_CONTENT_ONLY.Process(doc) | KeepLargestBlockFilter.INSTANCE.Process
-				(doc) | ExpandTitleToContentFilter.INSTANCE.Process(doc);
+			return TerminatingBlocksFinder.INSTANCE.Process (doc) 
+				| new DocumentTitleMatchClassifier (doc.GetTitle ()).Process (doc) 
+				| NumWordsRulesClassifier.INSTANCE.Process (doc) 
+				| IgnoreBlocksAfterContentFilter.DEFAULT_INSTANCE.Process (doc) 
+				| BlockProximityFusion.MAX_DISTANCE_1.Process (doc) 
+				| BoilerplateBlockFilter.INSTANCE.Process (doc) 
+				| BlockProximityFusion.MAX_DISTANCE_1_CONTENT_ONLY.Process (doc) 
+				| KeepLargestBlockFilter.INSTANCE.Process (doc) 
+				| ExpandTitleToContentFilter.INSTANCE.Process (doc);
 		}
 	}
 }

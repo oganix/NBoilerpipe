@@ -170,9 +170,6 @@ namespace NBoilerpipe
 		
 		public void FlushBlock ()
 		{
-			if (inBody == 0 && Sharpen.Runtime.EqualsIgnoreCase ("TITLE", lastStartTag)) 
-				SetTitle (tokenBuilder.ToString ().Trim ());
-			
 			int length = tokenBuilder.Length;
 			if (length == 0) {
 				return;
@@ -184,6 +181,9 @@ namespace NBoilerpipe
 				}
 			}
 
+			if (inBody == 0 && Sharpen.Runtime.EqualsIgnoreCase ("TITLE", lastStartTag)) 
+				SetTitle (tokenBuilder.ToString ().Trim ());
+			
 			string[] tokens = UnicodeTokenizer.Tokenize (tokenBuilder);
 			int numWords = 0;
 			int numLinkedWords = 0;
@@ -238,9 +238,7 @@ namespace NBoilerpipe
 			textBuilder.Length = 0;
 			tokenBuilder.Length = 0;
 			tb.SetTagLevel (blockTagLevel);
-			
 			AddTextBlock (tb);
-			
 			blockTagLevel = -1;
 		}
 
