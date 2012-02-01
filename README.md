@@ -1,4 +1,2 @@
 
-This is an attempt to port boilerpipe library to C#. The big junk of the code is generated with Sharpern tool and 
-uses the Sharpern libary (with additions) from NGit project. NekoHtml/Xerces based parsing replaced with 
-HmtlAgilityPack.
+NBoilerpipe is the C# port of boilerpipe 1.2 (http://code.google.com/p/boilerpipe/.) Most of the code is converted  with Sharpern tool. The code uses the Sharpern libary (with modification) from NGit project and HmtlAgilityPack (http://htmlagilitypack.codeplex.com/). 

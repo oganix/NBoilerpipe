@@ -108,6 +108,7 @@ namespace NBoilerpipe.Document
 			sb.Append (text);
 			sb.Append ('\n');
 			sb.Append (other.text);
+			this.text = sb.ToString ();
 			numWords += other.numWords;
 			numWordsInAnchorText += other.numWordsInAnchorText;
 			numWordsInWrappedLines += other.numWordsInWrappedLines;

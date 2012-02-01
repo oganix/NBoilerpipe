@@ -11,8 +11,12 @@ namespace Test
 		public static void Main (string[] args)
 		{
 			/*
+			
+//		    String url = "http://www.l3s.de/web/page11g.do?sp=page11g&link=ln104g&stu1g.LanguageISOCtxParam=en"
+//        	String url = "http://www.dn.se/nyheter/vetenskap/annu-godare-choklad-med-hjalp-av-dna-teknik"
+//			String url = "http://lyrics.wikia.com/Cake:Dime";
+
 			String page = String.Empty;
-			String url = "http://lyrics.wikia.com/Cake:Dime";
 			WebRequest request = WebRequest.Create (url);
 			HttpWebResponse response = (HttpWebResponse)request.GetResponse ();
 			Stream stream = response.GetResponseStream ();
@@ -22,12 +26,9 @@ namespace Test
 			}
 			*/
 			
-			
 			String page = File.ReadAllText ("/Users/aogan/Dropbox/Temp/simple2.html");
 		
-		
 			String lyrics = ArticleExtractor.INSTANCE.GetText (page);
-			
 			Console.WriteLine ("Lyrics: " + lyrics);
 		}
 	}

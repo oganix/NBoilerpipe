@@ -31,10 +31,9 @@ namespace NBoilerpipe.Extractors
 		/// <exception cref="NBoilerpipe.BoilerpipeProcessingException"></exception>
 		public override bool Process (TextDocument doc)
 		{
-			bool ret = SimpleBlockFusionProcessor.INSTANCE.Process (doc) 
+			return SimpleBlockFusionProcessor.INSTANCE.Process (doc) 
 				   | BlockProximityFusion.MAX_DISTANCE_1.Process (doc) 
 				   | DensityRulesClassifier.INSTANCE.Process (doc);
-			return ret;
 		}
 	}
 }
