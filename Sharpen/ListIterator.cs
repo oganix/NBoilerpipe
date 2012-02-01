@@ -15,7 +15,7 @@ namespace Sharpen
 		public ListIterator (IList<T> list, int n)
 		{
 			this.list = list;
-			this.pos = n;
+			this.pos = n-1;
 		}
 
 		public bool HasPrevious ()

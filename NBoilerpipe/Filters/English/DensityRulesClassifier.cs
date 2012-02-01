@@ -37,7 +37,7 @@ namespace NBoilerpipe.Filters.English
 		{
 			IList<TextBlock> textBlocks = doc.GetTextBlocks();
 			bool hasChanges = false;
-			ListIterator<TextBlock> it = textBlocks.ListIterator(0);
+			ListIterator<TextBlock> it = textBlocks.ListIterator();
 			if (!it.HasNext())
 			{
 				return false;
