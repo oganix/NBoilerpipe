@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Net;
 using HtmlAgilityPack;
 using NBoilerpipe.Parser;
 using NBoilerpipe.Document;
@@ -90,7 +91,7 @@ namespace NBoilerpipe
 		
         public void HandleText (HtmlTextNode node)
 		{
-			char[] ch = node.Text.ToCharArray ();
+			char[] ch = WebUtility.HtmlDecode(node.Text).ToCharArray ();
 			int start = 0;
 			int length = ch.Length;
 			
@@ -165,7 +166,7 @@ namespace NBoilerpipe
 			}
 			sbLastWasWhitespace = endWhitespace;
 			lastEvent = NBoilerpipeContentHandler.Event.CHARACTERS;
-			currentContainedTextElements.Add(textElementIdx);
+			currentContainedTextElements.Add (textElementIdx);
 		}
 		
 		public void FlushBlock ()
