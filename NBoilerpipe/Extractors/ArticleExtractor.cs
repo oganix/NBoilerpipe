@@ -37,7 +37,8 @@ namespace NBoilerpipe.Extractors
 		/// <exception cref="NBoilerpipe.BoilerpipeProcessingException"></exception>
 		public override bool Process (TextDocument doc)
 		{
-			return TerminatingBlocksFinder.INSTANCE.Process (doc) 
+			
+			bool ret = TerminatingBlocksFinder.INSTANCE.Process (doc) 
 				| new DocumentTitleMatchClassifier (doc.GetTitle ()).Process (doc) 
 				| NumWordsRulesClassifier.INSTANCE.Process (doc) 
 				| IgnoreBlocksAfterContentFilter.DEFAULT_INSTANCE.Process (doc) 
@@ -46,6 +47,8 @@ namespace NBoilerpipe.Extractors
 				| BlockProximityFusion.MAX_DISTANCE_1_CONTENT_ONLY.Process (doc) 
 				| KeepLargestBlockFilter.INSTANCE.Process (doc) 
 				| ExpandTitleToContentFilter.INSTANCE.Process (doc);
+			
+			return ret;
 		}
 	}
 }
