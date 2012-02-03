@@ -42,6 +42,7 @@ namespace Sharpen
 		public void Remove ()
 		{
 			list.RemoveAt (pos);
+			pos--;
 		}
 	}
 }
