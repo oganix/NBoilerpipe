@@ -19,14 +19,14 @@ namespace Test
 			WebRequest request = WebRequest.Create (url);
 			HttpWebResponse response = (HttpWebResponse)request.GetResponse ();
 			Stream stream = response.GetResponseStream ();
-			using (StreamReader streamReader = new StreamReader (stream, Encoding.UTF8)) {
+			using (StreamReader streamReader = new StreamReader (stream)) {
 				page = streamReader.ReadToEnd ();
 			}
 			
 			
-			//String page = File.ReadAllText ("/Users/aogan/Dropbox/Temp/simple2.html");
+			//String page = File.ReadAllText ("/Users/aogan/Dropbox/Temp/simple3.html");
 
-			String lyrics = DefaultExtractor.INSTANCE.GetText (page);
+			String lyrics = ArticleExtractor.INSTANCE.GetText (page);
 			Console.WriteLine ("Lyrics: \n" + lyrics);
 		}
 	}
