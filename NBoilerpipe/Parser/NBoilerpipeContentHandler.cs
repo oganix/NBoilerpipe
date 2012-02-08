@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Net;
 using HtmlAgilityPack;
 using NBoilerpipe.Parser;
 using NBoilerpipe.Document;
@@ -96,7 +95,7 @@ namespace NBoilerpipe
 		{
 			String text = node.Text;
 			if (text.Length > 0) {
-				text = WebUtility.HtmlDecode (text);
+				text = HttpUtility.HtmlDecode (text);
 			}
 			char[] ch = text.ToCharArray ();
 			int start = 0;
