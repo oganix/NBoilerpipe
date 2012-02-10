@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Net;
 using HtmlAgilityPack;
 using NBoilerpipe.Parser;
 using NBoilerpipe.Document;
@@ -25,6 +26,8 @@ namespace NBoilerpipe
 		readonly IDictionary<string, TagAction> tagActions = DefaultTagActionMap.INSTANCE;
 		string title = null;
 
+		internal static readonly string ANCHOR_TEXT_START = "$\ue00a<";
+		internal static readonly string ANCHOR_TEXT_END = ">\ue00a$";
 		internal StringBuilder tokenBuilder = new StringBuilder();
 		internal StringBuilder textBuilder = new StringBuilder();
 		internal int inBody = 0;
@@ -49,11 +52,9 @@ namespace NBoilerpipe
 		static readonly Sharpen.Pattern PAT_VALID_WORD_CHARACTER = Sharpen.Pattern
 			.Compile ("[\\p{L}\\p{Nd}\\p{Nl}\\p{No}]");
 		
+		
 		public void StartElement (HtmlNode node)
 		{
-			if (node.Name == "a")
-				inAnchorText = true;
-			
 			labelStacks.AddItem (null);
 			TagAction ta = tagActions.Get (node.Name);
 			if (ta != null) {
@@ -71,9 +72,6 @@ namespace NBoilerpipe
 		
 		public void EndElement (HtmlNode node)
 		{
-			if (node.Name == "a")
-				inAnchorText = false;
-			
 			TagAction ta = tagActions.Get (node.Name);
 			if (ta != null) {
 				flush = ta.End (this, node.Name) | flush;
@@ -93,11 +91,7 @@ namespace NBoilerpipe
 		
         public void HandleText (HtmlTextNode node)
 		{
-			String text = node.Text;
-			if (text.Length > 0) {
-				text = HttpUtility.HtmlDecode (text);
-			}
-			char[] ch = text.ToCharArray ();
+			char[] ch = WebUtility.HtmlDecode(node.Text).ToCharArray ();
 			int start = 0;
 			int length = ch.Length;
 			
@@ -206,22 +200,30 @@ namespace NBoilerpipe
 			int numWordsCurrentLine = 0;
 
 			foreach (string token in tokens) {
-				if (IsWord (token)) {
-					numTokens++;
-					numWords++;
-					numWordsCurrentLine++;
-					if (inAnchorText) {
-						numLinkedWords++;
-					}
-					int tokenLength = token.Length;
-					currentLineLength += tokenLength + 1;
-					if (currentLineLength > maxLineLength) {
-						numWrappedLines++;
-						currentLineLength = tokenLength;
-						numWordsCurrentLine = 1;
-					}
+				if (ANCHOR_TEXT_START.Equals (token)) {
+					inAnchorText = true;
 				} else {
-					numTokens++;
+					if (ANCHOR_TEXT_END.Equals (token)) {
+						inAnchorText = false;
+					} else {
+						if (IsWord (token)) {
+							numTokens++;
+							numWords++;
+							numWordsCurrentLine++;
+							if (inAnchorText) {
+								numLinkedWords++;
+							}
+							int tokenLength = token.Length;
+							currentLineLength += tokenLength + 1;
+							if (currentLineLength > maxLineLength) {
+								numWrappedLines++;
+								currentLineLength = tokenLength;
+								numWordsCurrentLine = 1;
+							}
+						} else {
+							numTokens++;
+						}
+					}
 				}
 			}
 			if (numTokens == 0) {

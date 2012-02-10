@@ -101,6 +101,7 @@ namespace NBoilerpipe.Parser
 				if (instance.inIgnorableElement == 0)
 				{
 					instance.AddWhitespaceIfNecessary();
+					instance.tokenBuilder.Append(NBoilerpipeContentHandler.ANCHOR_TEXT_START);
 					instance.tokenBuilder.Append(' ');
 					instance.sbLastWasWhitespace = true;
 				}
@@ -114,6 +115,7 @@ namespace NBoilerpipe.Parser
 					if (instance.inIgnorableElement == 0)
 					{
 						instance.AddWhitespaceIfNecessary();
+						instance.tokenBuilder.Append(NBoilerpipeContentHandler.ANCHOR_TEXT_END);
 						instance.tokenBuilder.Append(' ');
 						instance.sbLastWasWhitespace = true;
 					}

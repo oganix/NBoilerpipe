@@ -17,10 +17,11 @@ namespace NBoilerpipe.Parser
             this.contentHandler = contentHandler;
         }
 
-        public void Parse (String input)
-		{
-			HtmlDocument htmlDocument = new HtmlDocument ();
-			htmlDocument.LoadHtml (input);
+        public void Parse(String input)
+        {
+            HtmlDocument htmlDocument = new HtmlDocument();
+            htmlDocument.LoadHtml(input);
+
             Traverse(htmlDocument.DocumentNode);
         }
 
