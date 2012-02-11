@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Net;
 using HtmlAgilityPack;
 using NBoilerpipe.Parser;
 using NBoilerpipe.Document;
@@ -26,8 +25,8 @@ namespace NBoilerpipe
 		readonly IDictionary<string, TagAction> tagActions = DefaultTagActionMap.INSTANCE;
 		string title = null;
 
-		internal static readonly string ANCHOR_TEXT_START = "$\ue00a<";
-		internal static readonly string ANCHOR_TEXT_END = ">\ue00a$";
+		internal static readonly string ANCHOR_TEXT_START = "$\ue00a";
+		internal static readonly string ANCHOR_TEXT_END = "\ue00a$";
 		internal StringBuilder tokenBuilder = new StringBuilder();
 		internal StringBuilder textBuilder = new StringBuilder();
 		internal int inBody = 0;
@@ -91,7 +90,7 @@ namespace NBoilerpipe
 		
         public void HandleText (HtmlTextNode node)
 		{
-			char[] ch = WebUtility.HtmlDecode(node.Text).ToCharArray ();
+			char[] ch = HttpUtility.HtmlDecode(node.Text).ToCharArray ();
 			int start = 0;
 			int length = ch.Length;
 			
@@ -200,16 +199,17 @@ namespace NBoilerpipe
 			int numWordsCurrentLine = 0;
 
 			foreach (string token in tokens) {
-				if (ANCHOR_TEXT_START.Equals (token)) {
+				if (token == ANCHOR_TEXT_START) {
 					inAnchorText = true;
 				} else {
-					if (ANCHOR_TEXT_END.Equals (token)) {
+					if (token == ANCHOR_TEXT_END) {
 						inAnchorText = false;
 					} else {
 						if (IsWord (token)) {
 							numTokens++;
 							numWords++;
 							numWordsCurrentLine++;
+							
 							if (inAnchorText) {
 								numLinkedWords++;
 							}
@@ -236,7 +236,7 @@ namespace NBoilerpipe
 			} else {
 				numWordsInWrappedLines = numWords - numWordsCurrentLine;
 			}
-			TextBlock tb = new TextBlock (tokenBuilder.ToString ().Trim (), currentContainedTextElements
+			TextBlock tb = new TextBlock (textBuilder.ToString ().Trim (), currentContainedTextElements
 				, numWords, numLinkedWords, numWordsInWrappedLines, numWrappedLines, offsetBlocks
 				);
 			currentContainedTextElements = new BitSet ();
