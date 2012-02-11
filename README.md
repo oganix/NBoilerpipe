@@ -4,12 +4,9 @@ NBoilerpipe is a C# port of boilerpipe 1.2 (http://code.google.com/p/boilerpipe/
 
 Usage:
 
-using NBoilerpipe.Extractors;
-...
-
-String html = <Get Html Tex> 
-String extractedText = ArticleExtractor.INSTANCE.GetText (html);
-//String extractedText = DefaultExtractor.INSTANCE.GetText (html);
-
-
+using NBoilerpipe.Extractors;  
+...  
+String html = <Get Html Tex>  
+String extractedText = ArticleExtractor.INSTANCE.GetText (html);  
+//String extractedText = DefaultExtractor.INSTANCE.GetText (html);   
 ...
