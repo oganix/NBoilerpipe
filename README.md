@@ -6,7 +6,7 @@ Usage:
 
 using NBoilerpipe.Extractors;  
 ...  
-String html = <Get Html Tex>  
-String extractedText = ArticleExtractor.INSTANCE.GetText (html);  
-//String extractedText = DefaultExtractor.INSTANCE.GetText (html);   
+String html = GetHtmlText();  
+var text = ArticleExtractor.INSTANCE.GetText (html);  
+//var text = DefaultExtractor.INSTANCE.GetText (html);   
 ...
