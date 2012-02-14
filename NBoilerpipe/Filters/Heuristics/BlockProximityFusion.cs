@@ -94,8 +94,7 @@ namespace NBoilerpipe.Filters.Heuristics
 					prevBlock = block;
 					continue;
 				}
-				int diffBlocks = block.GetOffsetBlocksStart() - prevBlock.GetOffsetBlocksEnd() - 
-					1;
+				int diffBlocks = block.GetOffsetBlocksStart() - prevBlock.GetOffsetBlocksEnd() - 1;
 				if (diffBlocks <= maxBlocksDistance)
 				{
 					bool ok = true;

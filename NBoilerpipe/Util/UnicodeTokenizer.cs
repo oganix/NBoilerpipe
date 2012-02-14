@@ -31,7 +31,7 @@ namespace NBoilerpipe.Util
 		/// <returns>The tokens</returns>
 		public static string[] Tokenize(CharSequence text)
 		{
-			return PAT_NOT_WORD_BOUNDARY.Matcher(PAT_WORD_BOUNDARY.Matcher(text.ToString()).ReplaceAll("\u2063"
+			return PAT_NOT_WORD_BOUNDARY.Matcher(PAT_WORD_BOUNDARY.Matcher(text.ToString().ReplaceAll ("\u00A0","'\u00A0'")).ReplaceAll("\u2063"
 				)).ReplaceAll("$1").ReplaceAll("[ \u2063]+", " ").Trim().Split("[ ]+");
 		}
 	}

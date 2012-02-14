@@ -90,7 +90,10 @@ namespace NBoilerpipe
 		
         public void HandleText (HtmlTextNode node)
 		{
-			char[] ch = HttpUtility.HtmlDecode(node.Text).ToCharArray ();
+			if (IsTag (node.Text))
+				node.Text = "";
+			
+			char[] ch = HttpUtility.HtmlDecode (node.Text).ToCharArray ();
 			int start = 0;
 			int length = ch.Length;
 			
@@ -112,7 +115,7 @@ namespace NBoilerpipe
 			}
 			int end = start + length;
 			for (int i = start; i < end; i++) {
-				if (char.IsWhiteSpace (ch [i])) {
+				if (IsWhiteSpace (ch [i])) {
 					ch [i] = ' ';
 				}
 			}
@@ -166,6 +169,22 @@ namespace NBoilerpipe
 			sbLastWasWhitespace = endWhitespace;
 			lastEvent = NBoilerpipeContentHandler.Event.CHARACTERS;
 			currentContainedTextElements.Add (textElementIdx);
+		}
+		
+		bool IsTag (String text)
+		{
+			if( (text.StartsWith("</") && text.EndsWith(">")) ||
+			    (text.StartsWith("<") && text.EndsWith(">")) )
+			{
+				return true;
+			}
+			return false;
+		}
+		
+		bool IsWhiteSpace (char ch)
+		{
+			if (ch == '\u00A0') return false;
+			return char.IsWhiteSpace (ch);
 		}
 		
 		public void FlushBlock ()
