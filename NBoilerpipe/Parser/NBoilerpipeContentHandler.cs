@@ -173,12 +173,7 @@ namespace NBoilerpipe
 		
 		bool IsTag (String text)
 		{
-			if( (text.StartsWith("</") && text.EndsWith(">")) ||
-			    (text.StartsWith("<") && text.EndsWith(">")) )
-			{
-				return true;
-			}
-			return false;
+			return (Regex.IsMatch (text, "</?[a-z][a-z0-9]*[^<>]*>", RegexOptions.IgnoreCase));
 		}
 		
 		bool IsWhiteSpace (char ch)
