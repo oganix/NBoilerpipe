@@ -529,8 +529,8 @@ namespace Sharpen
 		public static IList<T> SubList<T> (this IList<T> list, int start, int len)
 		{
 			List<T> sublist = new List<T> (len);
-			for (int i = start; i < (start + len); i++) {
-				sublist.Add (list [i]);
+			for (int i = start; i < (start + len) && i < list.Count; i++) {
+				sublist.Add (list [i - start]);
 			}
 			return sublist;
 		}
