@@ -1,0 +1,10 @@
+C:\Projects\NBoilerpipe\NBoilerpipe\obj\Debug\NBoilerpipe.csprojResolveAssemblyReference.cache
+C:\Projects\NBoilerpipe\NBoilerpipe\bin\Debug\NBoilerpipe.dll
+C:\Projects\NBoilerpipe\NBoilerpipe\bin\Debug\NBoilerpipe.pdb
+C:\Projects\NBoilerpipe\NBoilerpipe\bin\Debug\HtmlAgilityPack.dll
+C:\Projects\NBoilerpipe\NBoilerpipe\bin\Debug\Sharpen.dll
+C:\Projects\NBoilerpipe\NBoilerpipe\bin\Debug\Sharpen.pdb
+C:\Projects\NBoilerpipe\NBoilerpipe\bin\Debug\HtmlAgilityPack.pdb
+C:\Projects\NBoilerpipe\NBoilerpipe\bin\Debug\HtmlAgilityPack.xml
+C:\Projects\NBoilerpipe\NBoilerpipe\obj\Debug\NBoilerpipe.dll
+C:\Projects\NBoilerpipe\NBoilerpipe\obj\Debug\NBoilerpipe.pdb

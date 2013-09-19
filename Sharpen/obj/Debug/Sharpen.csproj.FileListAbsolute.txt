@@ -1,0 +1,4 @@
+C:\Projects\NBoilerpipe\Sharpen\bin\Debug\Sharpen.dll
+C:\Projects\NBoilerpipe\Sharpen\bin\Debug\Sharpen.pdb
+C:\Projects\NBoilerpipe\Sharpen\obj\Debug\Sharpen.dll
+C:\Projects\NBoilerpipe\Sharpen\obj\Debug\Sharpen.pdb

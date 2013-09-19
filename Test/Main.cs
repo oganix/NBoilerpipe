@@ -10,8 +10,9 @@ namespace Test
 	{
 		public static void Main (string[] args)
 		{
-			
-		    String url = "http://www.l3s.de/web/page11g.do?sp=page11g&link=ln104g&stu1g.LanguageISOCtxParam=en";
+
+            String url = "http://www.yellowpencil.com/about";
+		    //String url = "http://www.l3s.de/web/page11g.do?sp=page11g&link=ln104g&stu1g.LanguageISOCtxParam=en";
 //			String url = "http://www.dn.se/nyheter/vetenskap/annu-godare-choklad-med-hjalp-av-dna-teknik";
 
 			String page = String.Empty;
@@ -24,6 +25,10 @@ namespace Test
 			
 			String text = ArticleExtractor.INSTANCE.GetText (page);
 			Console.WriteLine ("Text: \n" + text);
+
+            Console.WriteLine();
+            Console.WriteLine("Finished test!  Press any key to exit..");
+            Console.ReadKey();
 		}
 	}
 }
