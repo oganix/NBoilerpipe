@@ -1,0 +1,7 @@
+C:\Projects\NBoilerpipe\NBoilerpipe\bin\Release\NBoilerpipe.dll
+C:\Projects\NBoilerpipe\NBoilerpipe\bin\Release\HtmlAgilityPack.dll
+C:\Projects\NBoilerpipe\NBoilerpipe\bin\Release\Sharpen.dll
+C:\Projects\NBoilerpipe\NBoilerpipe\bin\Release\HtmlAgilityPack.pdb
+C:\Projects\NBoilerpipe\NBoilerpipe\bin\Release\HtmlAgilityPack.xml
+C:\Projects\NBoilerpipe\NBoilerpipe\obj\Release\NBoilerpipe.csprojResolveAssemblyReference.cache
+C:\Projects\NBoilerpipe\NBoilerpipe\obj\Release\NBoilerpipe.dll
