@@ -104,7 +104,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Sharpen\Sharpen.csproj">
-      <Project>{BB30B844-5CB6-49F8-96F3-95539721EC19}</Project>
+      <Project>{bb30b844-5cb6-49f8-96f3-95539721ec19}</Project>
       <Name>Sharpen</Name>
     </ProjectReference>
   </ItemGroup>

@@ -10,3 +10,4 @@ C:\Projects\NBoilerpipe\Test\bin\Debug\HtmlAgilityPack.pdb
 C:\Projects\NBoilerpipe\Test\bin\Debug\HtmlAgilityPack.xml
 C:\Projects\NBoilerpipe\Test\obj\Debug\Test.exe
 C:\Projects\NBoilerpipe\Test\obj\Debug\Test.pdb
+C:\Projects\NBoilerpipe\Test\bin\Debug\ExpectedOutput.txt

@@ -27,6 +27,8 @@ namespace NBoilerpipe.Parser
 
         private void Traverse (HtmlNode node)
 		{
+            if (node.NodeType == HtmlNodeType.Comment) { return; }
+
 			if (node.NodeType == HtmlNodeType.Element) {
 				contentHandler.StartElement (node);
 			} else if (node.NodeType == HtmlNodeType.Text) {
