@@ -7,7 +7,7 @@ using System.Collections.Specialized;
 
 namespace Sharpen
 {
-	using ICSharpCode.SharpZipLib.Zip.Compression;
+	//using ICSharpCode.SharpZipLib.Zip.Compression;
 	using System;
 	using System.Collections;
 	using System.Collections.Generic;
@@ -143,9 +143,9 @@ namespace Sharpen
 			return s;
 		}
 
-		public static void Finish (this Inflater i)
-		{
-		}
+        //public static void Finish (this Inflater i)
+        //{
+        //}
 		
 		public static bool AddItem<T> (this IList<T> list, T item)
 		{
@@ -408,7 +408,28 @@ namespace Sharpen
 		{
 			return list.Remove<T> (list.Count - 1);			
 		}
-		
+
+        public static string ReplaceAll(this string str, Regex rgx, string replacement)
+        {
+            if (replacement.IndexOfAny(new char[] { '\\', '$' }) != -1)
+            {
+                // Back references not yet supported
+                StringBuilder sb = new StringBuilder();
+                for (int n = 0; n < replacement.Length; n++)
+                {
+                    char c = replacement[n];
+                    if (c == '$')
+                        throw new NotSupportedException("Back references not supported");
+                    if (c == '\\')
+                        c = replacement[++n];
+                    sb.Append(c);
+                }
+                replacement = sb.ToString();
+            }
+
+            return rgx.Replace(str, replacement);
+        }
+
 		public static string ReplaceAll (this string str, string regex, string replacement)
 		{
 			Regex rgx = new Regex (regex);
@@ -608,21 +629,21 @@ namespace Sharpen
 			return val;
 		}
 
-		public static int GetTotalInFixed (this Inflater inf)
-		{
-			if (inf.TotalIn > 0)
-				return inf.TotalIn + 4;
-			else
-				return 0;
-		}
+        //public static int GetTotalInFixed (this Inflater inf)
+        //{
+        //    if (inf.TotalIn > 0)
+        //        return inf.TotalIn + 4;
+        //    else
+        //        return 0;
+        //}
 		
-		public static int GetRemainingInputFixed (this Inflater inf)
-		{
-			if (inf.RemainingInput >= 4)
-				return inf.RemainingInput - 4;
-			else
-				return 0;
-		}
+        //public static int GetRemainingInputFixed (this Inflater inf)
+        //{
+        //    if (inf.RemainingInput >= 4)
+        //        return inf.RemainingInput - 4;
+        //    else
+        //        return 0;
+        //}
 		
 		public static string GetTestName (object obj)
 		{

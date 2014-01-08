@@ -1,0 +1,13 @@
+C:\Projects\NBoilerpipe\Test\obj\Debug\Test.csprojResolveAssemblyReference.cache
+C:\Projects\NBoilerpipe\Test\bin\Debug\Test.exe
+C:\Projects\NBoilerpipe\Test\bin\Debug\Test.pdb
+C:\Projects\NBoilerpipe\Test\bin\Debug\NBoilerpipe.dll
+C:\Projects\NBoilerpipe\Test\bin\Debug\Sharpen.dll
+C:\Projects\NBoilerpipe\Test\bin\Debug\HtmlAgilityPack.dll
+C:\Projects\NBoilerpipe\Test\bin\Debug\NBoilerpipe.pdb
+C:\Projects\NBoilerpipe\Test\bin\Debug\Sharpen.pdb
+C:\Projects\NBoilerpipe\Test\bin\Debug\HtmlAgilityPack.pdb
+C:\Projects\NBoilerpipe\Test\bin\Debug\HtmlAgilityPack.xml
+C:\Projects\NBoilerpipe\Test\obj\Debug\Test.exe
+C:\Projects\NBoilerpipe\Test\obj\Debug\Test.pdb
+C:\Projects\NBoilerpipe\Test\bin\Debug\ExpectedOutput.txt
